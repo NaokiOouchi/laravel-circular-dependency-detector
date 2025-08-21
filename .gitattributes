@@ -1,0 +1,34 @@
+# Exclude files from export (composer archive)
+/.github            export-ignore
+/tests              export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore
+/.phpunit.result.cache export-ignore
+/phpunit.xml        export-ignore
+/CHANGELOG.md       export-ignore
+/PUBLISHING.md      export-ignore
+/README.ja.md       export-ignore
+/.php-cs-fixer.php  export-ignore
+/.phpactor.json     export-ignore
+/.editorconfig      export-ignore
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Force Unix line endings for these files
+*.php text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.sh text eol=lf
+*.stub text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

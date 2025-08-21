@@ -1,30 +1,66 @@
+# Composer
 /vendor/
+composer.lock
+
+# Testing
+.phpunit.result.cache
+.phpunit.cache/
+phpunit.xml.dist.bak
+coverage/
+.coverage
+
+# IDEs
+/.idea
+/.vscode
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+
+# Build artifacts
+/build/
+/dist/
+
+# Documentation build
+/docs/_build/
+
+# PHP CS Fixer
+.php_cs.cache
+.php-cs-fixer.cache
+
+# PHPActor
+.phpactor.json
+
+# Authentication
+auth.json
+
+# Laravel specific (if testing in a Laravel app)
+/storage/
+/bootstrap/cache/
+/public/storage
+/public/hot
+
+# Node (if any frontend assets)
 node_modules/
 npm-debug.log
 yarn-error.log
+package-lock.json
+yarn.lock
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
-
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
-
-# Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
-
-storage/*.key
-.env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
-
-/public/build
-/storage/pail
+# Misc
+*.log
+*.cache
 .env.backup
 .env.production
-.phpactor.json
-auth.json
+
+# Development specific
+.tool-versions
+claude.md
+PACKAGE_NAME_OPTIONS.md
+.claude/
+/PUBLISHING.md

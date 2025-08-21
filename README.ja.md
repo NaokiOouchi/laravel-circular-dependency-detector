@@ -15,7 +15,7 @@
 Composerを使用してパッケージをインストール：
 
 ```bash
-composer require laravel-circular-dependency-detector/laravel-circular-dependency-detector --dev
+composer require naokioouchi/laravel-circular-detector --dev
 ```
 
 ### 設定ファイルの公開
@@ -289,7 +289,7 @@ dependency-check:
 ## 要件
 
 - PHP ^8.1
-- Laravel 9.x、10.x、または11.x
+- Laravel 10.x、11.x、または12.x
 - nikic/php-parser ^4.15
 
 ## テスト
@@ -401,7 +401,7 @@ MIT
 
 ## サポート
 
-問題が発生した場合や機能リクエストがある場合は、[GitHubのイシュー](https://github.com/laravel-circular-dependency-detector/laravel-circular-dependency-detector/issues)を作成してください。
+問題が発生した場合や機能リクエストがある場合は、[GitHubのイシュー](https://github.com/NaokiOouchi/laravel-circular-dependency-detector/issues)を作成してください。
 
 ## クレジット
 

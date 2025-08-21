@@ -15,7 +15,7 @@ A powerful Laravel package for detecting and visualizing circular dependencies i
 Install the package via Composer:
 
 ```bash
-composer require laravel-circular-dependency-detector/laravel-circular-dependency-detector --dev
+composer require naokioouchi/laravel-circular-detector --dev
 ```
 
 ### Publishing Configuration
@@ -287,7 +287,7 @@ The package is optimized for performance:
 ## Requirements
 
 - PHP ^8.1
-- Laravel 9.x, 10.x, or 11.x
+- Laravel 10.x, 11.x, or 12.x
 - nikic/php-parser ^4.15
 
 ## Testing
@@ -331,6 +331,10 @@ For large codebases, you can optimize by:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Support
+
+If you encounter any issues or have feature requests, please create an issue on [GitHub](https://github.com/NaokiOouchi/laravel-circular-dependency-detector/issues).
 
 ## License
 

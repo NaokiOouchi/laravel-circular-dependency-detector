@@ -7,14 +7,16 @@ use Illuminate\Support\Collection;
 class CircularDependencyDetector
 {
     private DependencyAnalyzer $analyzer;
+    private array $config;
     private array $visited = [];
     private array $recursionStack = [];
     private array $cycles = [];
     private array $dependencies = [];
 
-    public function __construct(DependencyAnalyzer $analyzer)
+    public function __construct(DependencyAnalyzer $analyzer, array $config)
     {
         $this->analyzer = $analyzer;
+        $this->config = $config;
     }
 
     public function detect(): array
@@ -96,8 +98,17 @@ class CircularDependencyDetector
 
     private function extractModuleName(string $className): ?string
     {
-        if (preg_match('/^App\\\\Modules\\\\([^\\\\]+)\\\\/', $className, $matches)) {
-            return $matches[1];
+        $namespacePatterns = $this->config['namespace_patterns'] ?? ['App\\Modules\\{MODULE}'];
+        
+        foreach ($namespacePatterns as $pattern) {
+            // Convert pattern to regex by escaping backslashes and replacing {MODULE} with capture group
+            $regexPattern = str_replace('\\', '\\\\', $pattern);
+            $regexPattern = str_replace('{MODULE}', '([^\\\\]+)', $regexPattern);
+            $regexPattern = '/^' . $regexPattern . '\\\\/';
+            
+            if (preg_match($regexPattern, $className, $matches)) {
+                return $matches[1];
+            }
         }
         
         return null;

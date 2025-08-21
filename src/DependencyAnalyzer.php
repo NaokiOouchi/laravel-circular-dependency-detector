@@ -194,14 +194,34 @@ class DependencyAnalyzer
     private function isModuleDependency(string $dependency): bool
     {
         $modulesPath = $this->config['modules_path'] ?? app_path('Modules');
-        $modules = $this->getModules($modulesPath);
-
+        
+        // Handle multiple paths
+        if (is_array($modulesPath)) {
+            foreach ($modulesPath as $path) {
+                if ($this->isModuleDependencyInPath($dependency, $path)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        return $this->isModuleDependencyInPath($dependency, $modulesPath);
+    }
+    
+    private function isModuleDependencyInPath(string $dependency, string $path): bool
+    {
+        $modules = $this->getModules($path);
+        $namespacePatterns = $this->config['namespace_patterns'] ?? ['App\\Modules\\{MODULE}'];
+        
         foreach (array_keys($modules) as $moduleName) {
-            if (str_starts_with($dependency, 'App\\Modules\\' . $moduleName . '\\')) {
-                return true;
+            foreach ($namespacePatterns as $pattern) {
+                $prefix = str_replace('{MODULE}', $moduleName, $pattern) . '\\';
+                if (str_starts_with($dependency, $prefix)) {
+                    return true;
+                }
             }
         }
-
+        
         return false;
     }
 }

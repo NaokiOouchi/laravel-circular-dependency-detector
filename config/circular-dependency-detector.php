@@ -13,10 +13,31 @@ return [
     | - app_path('Modules')           // app/Modules
     | - app_path('Domain')            // app/Domain  
     | - base_path('src')              // src/
-    | - [app_path('Modules'), app_path('Services')]  // Multiple paths
+    | - base_path('packages')         // packages/
+    | - [app_path('Modules'), base_path('packages')]  // Multiple paths
     |
     */
     'modules_path' => app_path('Modules'),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Namespace Patterns
+    |--------------------------------------------------------------------------
+    |
+    | Define namespace patterns for module detection.
+    | Use {MODULE} as a placeholder for the module name.
+    |
+    | Examples:
+    | - 'App\\Modules\\{MODULE}'     // App\Modules\UserModule
+    | - 'Packages\\{MODULE}'         // Packages\UserModule
+    | - 'Domain\\{MODULE}'           // Domain\UserModule
+    | - 'Acme\\{MODULE}'            // Custom vendor namespace
+    |
+    */
+    'namespace_patterns' => [
+        'App\\Modules\\{MODULE}',
+        // 'Packages\\{MODULE}',        // Uncomment for packages/ structure
+    ],
     
     /*
     |--------------------------------------------------------------------------

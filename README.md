@@ -55,6 +55,14 @@ Edit `config/circular-dependency-detector.php` to customize:
 return [
     'modules_path' => app_path('Modules'),
     
+    // Namespace patterns configuration (NEW)
+    // {MODULE} placeholder will be replaced with module name
+    'namespace_patterns' => [
+        'App\\Modules\\{MODULE}',     // app/Modules/ModuleName
+        // 'Packages\\{MODULE}',       // packages/ModuleName
+        // 'Domain\\{MODULE}',         // Custom domain structure
+    ],
+    
     'scan_patterns' => [
         'controllers' => 'Controllers',
         'services' => 'Services',
@@ -63,6 +71,10 @@ return [
         'models' => 'Models',
         'jobs' => 'Jobs',
         'listeners' => 'Listeners',
+        // For DDD patterns
+        'domain' => 'Domain',
+        'application' => 'Application',
+        'infrastructure' => 'Infrastructure',
     ],
     
     'ignore_patterns' => [
@@ -77,6 +89,24 @@ return [
         'Exceptions',
         'DTOs',
         'Enums',
+    ],
+];
+```
+
+### Example for packages/ directory structure (DDD/Ports and Adapters)
+
+```php
+return [
+    'modules_path' => base_path('packages'),
+    
+    'namespace_patterns' => [
+        'Packages\\{MODULE}',
+    ],
+    
+    'scan_patterns' => [
+        'application' => 'Application',
+        'domain' => 'Domain',
+        'infrastructure' => 'Infrastructure',
     ],
 ];
 ```

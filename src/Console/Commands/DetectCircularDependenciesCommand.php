@@ -134,7 +134,8 @@ class DetectCircularDependenciesCommand extends Command
         }
         
         // Recreate analyzer with new config
-        $this->analyzer = new DependencyAnalyzer(config('circular-dependency-detector'));
-        $this->detector = new CircularDependencyDetector($this->analyzer);
+        $config = config('circular-dependency-detector');
+        $this->analyzer = new DependencyAnalyzer($config);
+        $this->detector = new CircularDependencyDetector($this->analyzer, $config);
     }
 }

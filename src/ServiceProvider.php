@@ -24,7 +24,8 @@ class ServiceProvider extends BaseServiceProvider
 
         $this->app->singleton(CircularDependencyDetector::class, function ($app) {
             return new CircularDependencyDetector(
-                $app->make(DependencyAnalyzer::class)
+                $app->make(DependencyAnalyzer::class),
+                $app['config']->get('circular-dependency-detector')
             );
         });
 

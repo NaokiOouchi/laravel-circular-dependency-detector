@@ -57,6 +57,14 @@ public function register()
 return [
     'modules_path' => app_path('Modules'),
     
+    // 名前空間パターンの設定（NEW）
+    // {MODULE}プレースホルダーがモジュール名に置換されます
+    'namespace_patterns' => [
+        'App\\Modules\\{MODULE}',     // app/Modules/ModuleName
+        // 'Packages\\{MODULE}',       // packages/ModuleName
+        // 'Domain\\{MODULE}',         // カスタムドメイン構造
+    ],
+    
     'scan_patterns' => [
         'controllers' => 'Controllers',
         'services' => 'Services',
@@ -83,6 +91,24 @@ return [
         'Exceptions',
         'DTOs',
         'Enums',
+    ],
+];
+```
+
+### packages/ディレクトリ構造（DDD/Ports and Adapters）の設定例
+
+```php
+return [
+    'modules_path' => base_path('packages'),
+    
+    'namespace_patterns' => [
+        'Packages\\{MODULE}',
+    ],
+    
+    'scan_patterns' => [
+        'application' => 'Application',
+        'domain' => 'Domain',
+        'infrastructure' => 'Infrastructure',
     ],
 ];
 ```

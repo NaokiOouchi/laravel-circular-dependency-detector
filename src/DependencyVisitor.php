@@ -263,7 +263,15 @@ class DependencyVisitor extends NodeVisitorAbstract
 
     private function isCurrentModuleClass(string $className): bool
     {
-        $modulePrefix = 'App\\Modules\\' . $this->currentModule . '\\';
-        return str_starts_with($className, $modulePrefix);
+        $namespacePatterns = $this->config['namespace_patterns'] ?? ['App\\Modules\\{MODULE}'];
+        
+        foreach ($namespacePatterns as $pattern) {
+            $prefix = str_replace('{MODULE}', $this->currentModule, $pattern) . '\\';
+            if (str_starts_with($className, $prefix)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

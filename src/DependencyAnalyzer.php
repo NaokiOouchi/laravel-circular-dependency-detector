@@ -18,7 +18,16 @@ class DependencyAnalyzer
     public function __construct(array $config)
     {
         $this->config = $config;
-        $this->parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
+        
+        // PHP Parser v4 と v5 の両方に対応
+        $parserFactory = new ParserFactory();
+        if (method_exists($parserFactory, 'createForNewestSupportedVersion')) {
+            // PHP Parser v5
+            $this->parser = $parserFactory->createForNewestSupportedVersion();
+        } else {
+            // PHP Parser v4
+            $this->parser = $parserFactory->create(ParserFactory::PREFER_PHP7);
+        }
     }
 
     public function analyzeDependencies(): Collection

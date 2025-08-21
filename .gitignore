@@ -64,3 +64,5 @@ claude.md
 PACKAGE_NAME_OPTIONS.md
 .claude/
 /PUBLISHING.md
+/LOCAL_TEST.md
+/test-local-install.sh
